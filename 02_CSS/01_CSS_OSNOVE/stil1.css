@@ -1,0 +1,21 @@
+h3 {
+  color: green;
+  text-decoration: line-through;
+}
+
+p {
+  color: rgb(85, 105, 54);
+}
+
+#prvi {
+  text-align: right;
+}
+
+.zuta_pozadina {
+  background-color: yellow;
+  font-weight: bold;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+}

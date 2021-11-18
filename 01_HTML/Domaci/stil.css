@@ -1,0 +1,42 @@
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+}
+
+h1 {
+  color: blue;
+}
+
+body {
+  background-color: yellow;
+}
+
+footer {
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 10px;
+}
+
+mark {
+  color: blue;
+}
+
+header {
+  color: red;
+  font-size: 10px;
+}
+
+a:visited {
+  color: blue;
+}
+
+a:hover {
+  color: orange;
+}
+
+a:active {
+  color: pink;
+}

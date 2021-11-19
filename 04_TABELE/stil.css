@@ -1,0 +1,19 @@
+#treca {
+  background-color: yellow;
+}
+
+.kolona {
+  background-color: yellow;
+}
+
+#prva tr:nth-child(odd) {
+  font-style: italic;
+}
+
+#druga tr:hover:nth-child(even) {
+  background-color: yellow;
+}
+
+#druga tr:nth-child(3n) {
+  color: blue;
+}

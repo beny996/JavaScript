@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.topbar li {
+  position: relative;
+  float: left;
+  border: solid;
+  width: 25%;
+  background-color: blue;
+  margin-left: 0;
+  top: 0;
+}
+
+li:hover {
+  background-color: red;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}

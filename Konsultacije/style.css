@@ -1,0 +1,21 @@
+#div1 {
+  background-color: chocolate;
+  width: 250px;
+  height: 250px;
+
+  /* Position:relative - relativno u odnosu na poziciju koju ima */
+  /* Position:absolute - pozicionira se u odnosu na prvog parent elementa koji ima podesenu poziciju */
+  /* Position:fixed - fiksno u odnosu na bilo koji pogled na stranici, bilo koje dimenzije browsera! */
+  position: fixed;
+  top: 80px;
+  left: 200px;
+
+  /* Position:absolute - pozicionira se u odnosu na prvog parent elementa koji ima podesenu poziciju */
+}
+
+#div1 p {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+}

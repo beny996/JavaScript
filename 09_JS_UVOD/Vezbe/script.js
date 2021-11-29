@@ -72,3 +72,15 @@ console.log("Temperatura u farenhajtima je " + farenhajt + " stepeni");
 
 let kelvin = celzijus + 273.15;
 console.log("Temperatura u kelvinima je " + kelvin + " stepeni");
+
+//Trenutno vreme i datum
+
+let datum = new Date(); //datum - objekat koji sadrzi informacije o trenutnom datumu i vremenu
+
+let godina = datum.getFullYear();
+let mesec = datum.getMonth() + 1;
+let datumUMesecu = datum.getDate(); //datum u mesecuy
+let danUNedelji = datum.getDay();
+console.log("Danas je ", + datumUMesecu + "." +  mesec + "." + godina);
+console.log(danUNedelji);
+

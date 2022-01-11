@@ -6,4 +6,4 @@ function generateImage (src) {
     return slika;
 }
 
-export{generateImage};
+export default generateImage;

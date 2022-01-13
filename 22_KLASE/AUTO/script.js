@@ -1,4 +1,5 @@
 import Auto from "./auto.js";
+import Film from "../FILM/film.js";
 
 let a1 = new Auto ("Citroen C4", "Crna", false);
 //Nakon ovoga, a1 je objekat koji ima sledeca polja
@@ -51,3 +52,4 @@ let a5 = new Auto ("    Audi a4", "plava", false, 3);
 console.log(a5);
 
 a3.stampaj();
+

@@ -51,6 +51,17 @@ class Film {
     stampaj() {
         console.log(this);
     }
+
+    prosek () {
+        let br = 0;
+        let suma = 0;
+        this.ocene.forEach(o => {
+            br++;
+            suma += o;
+        });
+
+        return suma / br;
+    }
 }
 
 export default Film;

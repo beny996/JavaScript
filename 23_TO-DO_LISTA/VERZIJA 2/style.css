@@ -1,9 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 li {
   border: 1px solid blue;
   margin: 5px;
   padding: 5px;
-  width: 20%;
+  width: 90%;
   background-color: lightblue;
+  border-radius: 10px;
 }
 
 li:hover {
@@ -16,13 +24,14 @@ ul {
 }
 
 h1 {
-  color: blue;
+  color: burlywood;
 }
 
 input {
   display: block;
   margin-top: 20px;
   margin-left: 5px;
+  border-radius: 10px;
 }
 
 #dugme {
@@ -33,9 +42,21 @@ input {
 }
 
 #inputTekst {
-  width: 20%;
+  width: 90%;
 }
 
 input[type="radio"] {
   display: inline;
+}
+
+#div1 {
+  position: absolute;
+  left: 50px;
+  right: 50px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 30%;
+  background-color: gainsboro;
+  margin: auto;
+  margin-top: 150px;
 }

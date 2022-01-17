@@ -1,0 +1,20 @@
+li {
+  border: 1px solid blue;
+  margin: 5px;
+  padding: 5px;
+  width: 20%;
+  background-color: lightblue;
+}
+
+li:hover {
+  background-color: cyan;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+h1 {
+  color: blue;
+}

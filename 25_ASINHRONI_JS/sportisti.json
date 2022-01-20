@@ -1,0 +1,20 @@
+[
+    {
+        "imePrezime" : "Kevin Durant",
+        "visina" : 208,
+        "timovi" : ["Brooklyn Nets", "Seattle"]
+    },
+
+    {
+        "imePrezime" : "Lebron James",
+        "visina" : 206,
+        "timovi" : ["Lakers", "Cleveland", "Miami"]
+    },
+
+    {
+        "imePrezime" : "Nikola Jokic",
+        "visina" : 211,
+        "timovi" : ["Denver", "Mega"]
+    }
+
+]

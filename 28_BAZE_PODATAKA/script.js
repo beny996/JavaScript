@@ -94,3 +94,19 @@ db.collection("customers")
 
 console.log("Test poruka");
 
+//Drugi nacin za dodavanje dokumenata
+
+db.collection("tasks")
+.add({
+    title:"Vezba za projekat",
+    description: "Vezbanje JS-a",
+    start_date: firebase.firestore.Timestamp.fromDate(new Date("2022-01-29")),
+    due_date: null,
+    priority: true
+})
+.then(() => {
+    console.log("Uspesno dodat zadatak u kolekciju tasks");
+})
+.catch(err => {
+    console.log(`Desila se greska ${err}`);
+});

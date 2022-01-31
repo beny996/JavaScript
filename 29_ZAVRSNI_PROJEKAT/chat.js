@@ -27,6 +27,21 @@ class Chatroom {
         return this._username;
     }
 
+    async addChat(msg) {
+        let vreme = new Date();
+        let vremeTS = firebase.firestore.Timestamp.fromDate(vreme);
+        
+        let response = await this.chats.add({
+            message: msg,
+            username: this.username,
+            room: this.room,
+            created_at: vremeTS
+        });
+        return response; // Vracam promise i mogu za njega da kazem .then() i .catch()    
+    }
+
+    
+
 }
 
 export default Chatroom;

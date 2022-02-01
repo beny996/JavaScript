@@ -1,4 +1,5 @@
 import Chatroom from "./chat.js";
+import ChatUI from "./ui.js";
 
 let chat1 = new Chatroom("js", "Jelena");
 let chat2 = new Chatroom("general", "Stefan");
@@ -21,3 +22,6 @@ console.log(chat1.username, chat1.room) // Proveravam da li rade seteri
 chat2.getChats(d => {
     console.log(d);
 });
+
+let lista = document.querySelector("ul");
+let poruka = new ChatUI(lista);

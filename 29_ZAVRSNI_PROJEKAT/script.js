@@ -1,19 +1,5 @@
 import Chatroom from "./chat.js";
 
-// db.collection("chats")
-// .get()
-// .then(snapshot => {
-//     if(!snapshot.empty) {
-//         snapshot.docs.forEach(doc => {
-//             let obj = doc.data();
-//             console.log(obj);
-//         });
-//     }
-// })
-// .catch(err => {
-//     console.log(`Desila se greska : ${err}`);
-// });
-
 let chat1 = new Chatroom("js", "Jelena");
 let chat2 = new Chatroom("general", "Stefan");
 let chat3 = new Chatroom("test", "Nikola");
@@ -32,3 +18,6 @@ console.log(chat1.username, chat1.room) // Proveravam da li rade seteri
 //     console.log(`Desila se neka greska : ${err}`);
 // });
 
+chat2.getChats(d => {
+    console.log(d);
+});

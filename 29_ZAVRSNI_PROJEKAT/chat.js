@@ -40,7 +40,21 @@ class Chatroom {
         return response; // Vracam promise i mogu za njega da kazem .then() i .catch()    
     }
 
-    
+    getChats(callback) {
+        this.chats
+        .where("room", "==", this.room)
+        .orderBy("created_at", "asc")
+        .onSnapshot(snapshot => {
+            snapshot.docChanges().forEach(change => {
+                
+                // Ispisati dokumente koji su dodati u bazu
+                if(change.type == "added"){
+                    // console.log(change.doc.data());
+                    callback(change.doc.data());
+                }
+            });
+        });
+    }
 
 }
 

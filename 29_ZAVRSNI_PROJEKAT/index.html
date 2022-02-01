@@ -6,34 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-    <header>
-        <h2>ITBootcamp Chat</h2>
-        <h3>Choose a chatroom</h3>
-    </header>
-    
-
-    <div id="sobe">
-        <p>#general</p>
-        <p>#js</p>
-        <p>#homeworks</p>
-        <p>#test</p>
-    </div>
-
-    <section>
+    <div class="container">
+        <header>
+            <h2 class="w3-animate-left">ITBootcamp Chat</h2>
+            <h3 class="w3-animate-right">Choose a chatroom</h3>
+        </header>
         
-    </section>
 
-    <form action="">
-        <input type="text" placeholder="Your message...">
-        <input type="submit" value="Send" id="send">
-    </form>
+        <div id="sobe">
+            <p>#general</p>
+            <p>#js</p>
+            <p>#homeworks</p>
+            <p>#test</p>
+        </div>
 
-    <form action="">
-        <input type="text" placeholder="Update username">
-        <input type="submit" value="Update" id="update">
-    </form>
+        <section>
+            <ul>
+             
+            </ul>
+        </section>
+
+        <form action="" id="formaSend">
+            <input type="text" placeholder="Your message...">
+            <input type="submit" value="Send" id="send">
+        </form>
+
+        <form action="" id="formaUpdate">
+            <input type="text" placeholder="Update username">
+            <input type="submit" value="Update" id="update">
+        </form>
+    </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>

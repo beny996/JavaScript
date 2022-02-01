@@ -23,5 +23,9 @@ chat2.getChats(d => {
     console.log(d);
 });
 
-let lista = document.querySelector("ul");
-let poruka = new ChatUI(lista);
+let ul = document.querySelector("ul");
+let poruka = new ChatUI(ul);
+
+chat2.getChats(d => {
+    poruka.templateLI(d);
+});

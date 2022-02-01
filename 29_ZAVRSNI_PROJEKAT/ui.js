@@ -12,8 +12,8 @@ class ChatUI {
     }
 
     templateLI(d) {
-        let li = document.createElement("li");
-        
+        let li = `<li>${d.username}: ${d.message} <br> ${d.created_at}</li>`;
+        this.lista.innerHTML += li;
     }
 }
 

@@ -72,6 +72,7 @@ section {
   left: 25%;
   margin: 20px 0;
   background-color: white;
+  overflow-y: scroll;
 }
 
 @keyframes flyin {
@@ -84,9 +85,13 @@ section {
 
 li {
   color: black;
-  background-color: wheat;
+  background-color: rgb(253, 188, 67);
   border: 1px solid white;
   width: 50%;
   margin: 10px;
   border-radius: 0 10px 10px 10px;
+}
+
+ul {
+  list-style-type: none;
 }

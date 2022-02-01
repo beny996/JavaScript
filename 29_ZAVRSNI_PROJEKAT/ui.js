@@ -12,9 +12,26 @@ class ChatUI {
     }
 
     templateLI(d) {
-        let li = `<li>${d.username}: ${d.message} <br> ${d.created_at}</li>`;
+        let li = `<li>${d.username}: ${d.message} <br> ${this.formatDate(d)}</li>`;
         this.lista.innerHTML += li;
+    }
+
+    formatDate(d) {
+        let date = d.created_at.toDate();
+        let day = date.getDate();
+        let month = date.getMonth();
+        let year = date.getFullYear();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        day = String(day).padStart(2, "0");
+        month = String(month).padStart(2, "0");
+        let dateFormat = `${day}. ${month}. ${year} - ${hour}. ${minute}`;
+        return dateFormat;
     }
 }
 
 export default ChatUI;
+
+// let h = date.getHours();
+
+// h = String(h).padStart(2, "0");

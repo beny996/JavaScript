@@ -32,6 +32,19 @@ chat2.getChats(d => {
 
 let send = document.getElementById("send");
 let inputSend = document.getElementById("inputSend")
+let update = document.getElementById("update");
+let inputUpdate = document.getElementById("inputUpdate");
+
 send.addEventListener("click", (e) => {
     e.preventDefault();
+    let tekst = inputSend.value;
+    chat1.addChat(tekst)
+    .then(() => {
+        console.log(`Dodata nova poruka`);
+        inputSend.value = "";
+    })
+    .catch(err => {
+        console.log(`Desila se neka greska : ${err}`);
+    });
 });
+

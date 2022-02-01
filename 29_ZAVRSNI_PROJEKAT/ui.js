@@ -19,7 +19,7 @@ class ChatUI {
     formatDate(d) {
         let date = d.created_at.toDate();
         let day = date.getDate();
-        let month = date.getMonth();
+        let month = date.getMonth()+1;
         let year = date.getFullYear();
         let hour = date.getHours();
         let minute = date.getMinutes();
@@ -31,7 +31,3 @@ class ChatUI {
 }
 
 export default ChatUI;
-
-// let h = date.getHours();
-
-// h = String(h).padStart(2, "0");

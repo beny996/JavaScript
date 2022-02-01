@@ -24,8 +24,14 @@ chat2.getChats(d => {
 });
 
 let ul = document.querySelector("ul");
-let poruka = new ChatUI(ul);
+let chat = new ChatUI(ul);
 
 chat2.getChats(d => {
-    poruka.templateLI(d);
+    chat.templateLI(d);
+});
+
+let send = document.getElementById("send");
+let inputSend = document.getElementById("inputSend")
+send.addEventListener("click", (e) => {
+    e.preventDefault();
 });

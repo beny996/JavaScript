@@ -28,14 +28,14 @@ class Chatroom {
     }
 
     async addChat(msg) {
-        let vreme = new Date();
-        let vremeTS = firebase.firestore.Timestamp.fromDate(vreme);
+        let time = new Date();
+        let timeTS = firebase.firestore.Timestamp.fromDate(time);
         
         let response = await this.chats.add({
             message: msg,
             username: this.username,
             room: this.room,
-            created_at: vremeTS
+            created_at: timeTS
         });
         return response; // Vracam promise i mogu za njega da kazem .then() i .catch()    
     }
@@ -56,6 +56,13 @@ class Chatroom {
         });
     }
 
+    updateUsername(username) {
+        this.username = username;
+    }
+
+    updateRoom(room) {
+        this.room = room;
+    }
 }
 
 export default Chatroom;

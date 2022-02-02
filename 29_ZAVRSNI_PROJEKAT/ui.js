@@ -1,19 +1,19 @@
 class ChatUI {
     constructor(l) {
-        this.lista = l;
+        this.list = l;
     }
 
-    set lista(l) {
-        this._lista = l;
+    set list(l) {
+        this._list = l;
     }
 
-    get lista() {
-        return this._lista;
+    get list() {
+        return this._list;
     }
 
     templateLI(d) {
         let li = `<li>${d.username}: ${d.message} <br> ${this.formatDate(d)}</li>`;
-        this.lista.innerHTML += li;
+        this.list.innerHTML += li;
     }
 
     formatDate(d) {
@@ -25,8 +25,16 @@ class ChatUI {
         let minute = date.getMinutes();
         day = String(day).padStart(2, "0");
         month = String(month).padStart(2, "0");
-        let dateFormat = `${day}. ${month}. ${year} - ${hour}. ${minute}`;
-        return dateFormat;
+        minute = String(minute).padStart(2, "0");
+        if(day == new Date().getDate()){
+            let dateFormat = `${hour}.${minute}`;
+            return dateFormat;
+        }
+        else{
+            let dateFormat = `${day}. ${month}. ${year} - ${hour}.${minute}`;
+            return dateFormat;
+        }
+        
     }
 }
 

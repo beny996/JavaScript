@@ -1,32 +1,16 @@
 import Chatroom from "./chat.js";
 import ChatUI from "./ui.js";
 
-let chat1 = new Chatroom("js", "Jelena");
-let chat2 = new Chatroom("general", "Stefan");
+let chat1 = new Chatroom("general", "Jelena");
+let chat2 = new Chatroom("js", "Stefan");
 let chat3 = new Chatroom("test", "Nikola");
 let chat4 = new Chatroom("homeworks", "Kristian");
 
-console.log(chat1.username, chat1.room); // Testiranje getera
-chat1.username = "Jelenaa"; // Testiram seter za username
-chat1.room = "general"; // Testiram seter za room
-console.log(chat1.username, chat1.room) // Proveravam da li rade seteri
-
-// chat1.addChat("Trening u sredu od 18h")
-// .then(() => {
-//     console.log("Uspesno dodat chat");
-// })
-// .catch(err => {
-//     console.log(`Desila se neka greska : ${err}`);
-// });
-
-chat2.getChats(d => {
-    console.log(d);
-});
 
 let ul = document.querySelector("ul");
 let chat = new ChatUI(ul);
 
-chat2.getChats(d => {
+chat1.getChats(d => {
     chat.templateLI(d);
 });
 
@@ -35,16 +19,64 @@ let inputSend = document.getElementById("inputSend")
 let update = document.getElementById("update");
 let inputUpdate = document.getElementById("inputUpdate");
 
+
 send.addEventListener("click", (e) => {
     e.preventDefault();
-    let tekst = inputSend.value;
-    chat1.addChat(tekst)
-    .then(() => {
-        console.log(`Dodata nova poruka`);
-        inputSend.value = "";
-    })
-    .catch(err => {
-        console.log(`Desila se neka greska : ${err}`);
+    let text = inputSend.value;
+    if(text.trim() == ""){
+        alert(`Nije moguce poslati praznu poruku`)
+    }
+    else{
+        chat1.addChat(text)
+        .then(() => {
+            inputSend.value = "";
+        })
+        .catch(err => {
+            console.log(`Desila se neka greska : ${err}`);
+        });
+        
+    }
+    
+});
+
+let nameUpdate = document.querySelector("section p");
+
+
+update.addEventListener("click", (e) => {
+    e.preventDefault();
+    let text = inputUpdate.value;
+    if(text == "admin" || text == "Admin"){
+        let promptPass = prompt("Unesite lozinku");
+        if(promptPass !== "admin1234"){
+            alert("Pogresna lozinka");
+        }
+        else{
+            alert("Uspesno ste se ulogovali kao admin");
+            inputUpdate.value = "";
+            chat1.updateUsername(text);
+        }
+    }
+    else{
+        chat1.updateUsername(text);
+        inputUpdate.value = "";
+        nameUpdate.innerHTML = `Promenjeno korisnicko ime (${text})`;
+        nameUpdate.style.display = "block";
+        setTimeout(() => {
+            nameUpdate.style.display = "none";
+        }, 3000)
+    }
+});
+
+let rooms = document.querySelectorAll("#rooms p");
+
+rooms.forEach(room => {
+    room.addEventListener("click", () => {
+        ul.innerHTML = "";
+        let roomName = room.innerHTML.length -1;
+        chat1.updateRoom(room.innerHTML.slice(-roomName));
+        chat1.getChats(d => {
+            chat.templateLI(d);
+        });
     });
 });
 

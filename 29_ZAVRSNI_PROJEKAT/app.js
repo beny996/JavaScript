@@ -1,23 +1,25 @@
 import Chatroom from "./chat.js";
 import ChatUI from "./ui.js";
 
-let chat1 = new Chatroom("general", "Jelena");
-let chat2 = new Chatroom("js", "Stefan");
-let chat3 = new Chatroom("test", "Nikola");
-let chat4 = new Chatroom("homeworks", "Kristian");
-
-
-let ul = document.querySelector("ul");
-let chat = new ChatUI(ul);
-
-chat1.getChats(d => {
-    chat.templateLI(d);
-});
-
+//DOM
 let send = document.getElementById("send");
 let inputSend = document.getElementById("inputSend")
 let update = document.getElementById("update");
 let inputUpdate = document.getElementById("inputUpdate");
+let rooms = document.querySelectorAll("#rooms p");
+let nameUpdate = document.querySelector("section p");
+let ul = document.querySelector("ul");
+
+
+//Objekti klasa
+let chatroom = new Chatroom("general", "Jelena");
+let chatUI = new ChatUI(ul);
+
+chatroom.getChats(d => {
+    chatUI.templateLI(d);
+});
+
+
 
 
 send.addEventListener("click", (e) => {
@@ -27,7 +29,7 @@ send.addEventListener("click", (e) => {
         alert(`Nije moguce poslati praznu poruku`)
     }
     else{
-        chat1.addChat(text)
+        chatroom.addChat(text)
         .then(() => {
             inputSend.value = "";
         })
@@ -39,12 +41,10 @@ send.addEventListener("click", (e) => {
     
 });
 
-let nameUpdate = document.querySelector("section p");
-
 
 update.addEventListener("click", (e) => {
     e.preventDefault();
-    let username = chat1.username;
+    let username = chatroom.username;
     let text = inputUpdate.value;
     if(text == "admin" || text == "Admin"){
         let promptPass = prompt("Unesite lozinku");
@@ -54,12 +54,12 @@ update.addEventListener("click", (e) => {
         else{
             alert("Uspesno ste se ulogovali kao admin");
             inputUpdate.value = "";
-            chat1.updateUsername(text);
+            chatroom.updateUsername(text);
         }
     }
     else{
-        chat1.updateUsername(text);
-        if(username != chat1.username){
+        chatroom.updateUsername(text);
+        if(username != chatroom.username){
             inputUpdate.value = "";
             nameUpdate.innerHTML = `Promenjeno korisnicko ime (${text})`;
             nameUpdate.style.display = "block";
@@ -73,15 +73,14 @@ update.addEventListener("click", (e) => {
     }
 });
 
-let rooms = document.querySelectorAll("#rooms p");
 
 rooms.forEach(room => {
     room.addEventListener("click", () => {
         ul.innerHTML = "";
         let roomName = room.innerHTML.length -1;
-        chat1.updateRoom(room.innerHTML.slice(-roomName));
-        chat1.getChats(d => {
-            chat.templateLI(d);
+        chatroom.updateRoom(room.innerHTML.slice(-roomName));
+        chatroom.getChats(d => {
+            chatUI.templateLI(d);
         });
     });
 });

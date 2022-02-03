@@ -44,6 +44,7 @@ let nameUpdate = document.querySelector("section p");
 
 update.addEventListener("click", (e) => {
     e.preventDefault();
+    let username = chat1.username;
     let text = inputUpdate.value;
     if(text == "admin" || text == "Admin"){
         let promptPass = prompt("Unesite lozinku");
@@ -58,12 +59,17 @@ update.addEventListener("click", (e) => {
     }
     else{
         chat1.updateUsername(text);
-        inputUpdate.value = "";
-        nameUpdate.innerHTML = `Promenjeno korisnicko ime (${text})`;
-        nameUpdate.style.display = "block";
-        setTimeout(() => {
-            nameUpdate.style.display = "none";
-        }, 3000)
+        if(username != chat1.username){
+            inputUpdate.value = "";
+            nameUpdate.innerHTML = `Promenjeno korisnicko ime (${text})`;
+            nameUpdate.style.display = "block";
+            setTimeout(() => {
+                nameUpdate.style.display = "none";
+            }, 3000)
+        }
+        else{
+            inputUpdate.value = "";
+        }
     }
 });
 

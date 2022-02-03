@@ -15,6 +15,18 @@ let ul = document.querySelector("ul");
 let chatroom = new Chatroom("general", "Jelena");
 let chatUI = new ChatUI(ul);
 
+//Postavljanje vrednosti u local storage
+localStorage.setItem("nazivPromenljive", 5);
+localStorage.setItem("nazivPromenljive", 6);
+localStorage.setItem("nazivPromenljive", "Test string");
+localStorage.setItem("x", 7);
+localStorage.setItem("y", 10);
+
+//Uzimanje vrednost iz local storage
+let z = localStorage.x + localStorage.y;
+console.log(z);
+
+//Ispis dokumenata iz db na stranici
 chatroom.getChats(d => {
     chatUI.templateLI(d);
 });
@@ -71,6 +83,7 @@ update.addEventListener("click", (e) => {
             inputUpdate.value = "";
         }
     }
+    
 });
 
 

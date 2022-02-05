@@ -42,8 +42,6 @@ class ChatUI {
     clear() {
         this.list.innerHTML = "";
     }
-
-    
 }
 
 export default ChatUI;

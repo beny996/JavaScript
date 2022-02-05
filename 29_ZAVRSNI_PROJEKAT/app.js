@@ -159,8 +159,14 @@ dateFilter.addEventListener("click", (e) => {
     let date2T = new Date(date2.value);
     let date1TS = firebase.firestore.Timestamp.fromDate(date1T);
     let date2TS = firebase.firestore.Timestamp.fromDate(date2T);
-    ul.innerHTML = "";
+    chatUI.clear();
     chatroom.dateFilter(d => {
         chatUI.templateLI(d);
     }, date1TS, date2TS);
+});
+
+inputSend.addEventListener("keydown", (e) => {
+    if(e.keyCode === 13 && !e.shiftKey){
+        send.click();
+    }
 });

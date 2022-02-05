@@ -9,40 +9,49 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h2 class="w3-animate-left">ITBootcamp Chat</h2>
-            <h3 class="w3-animate-right">Choose a chatroom</h3>
-        </header>
-        
+    <header>
+        <h2 class="w3-animate-left">ITBootcamp Chat</h2>
+        <h3 class="w3-animate-right">Choose a chatroom</h3>
+    </header>
+    
 
-        <div id="rooms">
-            <p>#general</p>
-            <p>#js</p>
-            <p>#homeworks</p>
-            <p>#test</p>
-        </div>
-
-        <section>
-            <ul>
-             
-            </ul>
-
-            <p id="usernameUpdate">
-
-            </p>
-        </section>
-
-        <form action="" id="formSend">
-            <input type="text" placeholder="Your message..." id="inputSend">
-            <input type="submit" value="Send" id="send">
-        </form>
-
-        <form action="" id="formUpdate">
-            <input type="text" placeholder="Update username" id="inputUpdate">
-            <input type="submit" value="Update" id="update">
-        </form>
+    <div id="rooms">
+        <a href="">#general</a>
+        <a href="">#js</a>
+        <a href="">#homeworks</a>
+        <a href="">#test</a>
     </div>
+
+    <section>
+        <ul>
+            
+        </ul>
+
+        <p id="usernameUpdate">
+
+        </p>
+    </section>
+    
+    <form action="">
+        <input type="color" value="#ffffff" id="color">
+        <input type="submit" value="Update color" id="updateColor">
+    </form>
+
+    <form action="">
+        <input type="datetime-local" id="date1">
+        <input type="datetime-local" id="date2">
+        <input type="submit" name="" id="dateFilter" value="Set dates">
+    </form>
+
+    <form action="" id="formSend">
+        <textarea name="" id="inputSend" cols="43" rows="1" placeholder="Your message..."></textarea>
+        <input type="submit" value="Send" id="send">
+    </form>
+
+    <form action="" id="formUpdate">
+        <input type="text" placeholder="Update username" id="inputUpdate">
+        <input type="submit" value="Update" id="update">
+    </form>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>

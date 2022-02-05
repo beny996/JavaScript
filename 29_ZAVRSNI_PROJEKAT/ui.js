@@ -11,9 +11,11 @@ class ChatUI {
         return this._list;
     }
 
-    templateLI(d) {
-        let li = `<li>${d.username}: ${d.message} <br> ${this.formatDate(d)}</li>`;
-        this.list.innerHTML += li;
+    templateLI(doc) {
+        let id = doc.id;
+        let d = doc.data();
+        let li = `<li id="${id}"><span>${d.username}</span>: ${d.message} <br> ${this.formatDate(d)} <img src ="https://previews.123rf.com/images/tifani1/tifani11801/tifani1180100203/93475788-trash-bin-vector-icon-.jpg"></li>`;
+        this.list.innerHTML += li;    
     }
 
     formatDate(d) {
@@ -27,15 +29,21 @@ class ChatUI {
         month = String(month).padStart(2, "0");
         minute = String(minute).padStart(2, "0");
         if(day == new Date().getDate()){
-            let dateFormat = `${hour}.${minute}`;
+            let dateFormat = `${hour}:${minute}`;
             return dateFormat;
         }
         else{
-            let dateFormat = `${day}. ${month}. ${year} - ${hour}.${minute}`;
+            let dateFormat = `${day}. ${month}. ${year} - ${hour}:${minute}`;
             return dateFormat;
         }
         
     }
+
+    clear() {
+        this.list.innerHTML = "";
+    }
+
+    
 }
 
 export default ChatUI;

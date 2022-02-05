@@ -6,32 +6,57 @@ let send = document.getElementById("send");
 let inputSend = document.getElementById("inputSend")
 let update = document.getElementById("update");
 let inputUpdate = document.getElementById("inputUpdate");
-let rooms = document.querySelectorAll("#rooms p");
+let rooms = document.querySelectorAll("#rooms a");
 let nameUpdate = document.querySelector("section p");
 let ul = document.querySelector("ul");
+let updateColor = document.getElementById("updateColor");
+let colorChange = document.getElementById("color");
+let section = document.querySelector("section");
+let dateFilter = document.getElementById("dateFilter")
+let date1 = document.getElementById("date1");
+let date2 = document.getElementById("date2");
+
 
 
 //Objekti klasa
-let chatroom = new Chatroom("general", "Jelena");
+let username = "anonymous";
+let room = "general";
+if(localStorage.username){
+    username = localStorage.username;
+}
+if(sessionStorage.room){
+    room = sessionStorage.room;
+}
+let chatroom = new Chatroom(room, username);
 let chatUI = new ChatUI(ul);
 
-//Postavljanje vrednosti u local storage
-localStorage.setItem("nazivPromenljive", 5);
-localStorage.setItem("nazivPromenljive", 6);
-localStorage.setItem("nazivPromenljive", "Test string");
-localStorage.setItem("x", 7);
-localStorage.setItem("y", 10);
 
-//Uzimanje vrednost iz local storage
-let z = localStorage.x + localStorage.y;
-console.log(z);
+
+//Highlight default sobe prilikom ucitavanja stranice
+window.onload = () => {
+    rooms.forEach(room => {
+        if(room.innerHTML.includes(sessionStorage.room)){
+            room.style.backgroundColor = "rgb(253, 188, 67)";
+        }
+    });
+    if(localStorage.color){
+        section.style.backgroundColor = localStorage.color;
+        colorChange.value = localStorage.color;
+    }
+    if(!sessionStorage.room){
+        rooms.forEach(room => {
+            if(room.innerHTML.includes("general")){
+                room.style.backgroundColor = "rgb(253, 188, 67)";
+            }
+        });
+    }
+};
+
 
 //Ispis dokumenata iz db na stranici
 chatroom.getChats(d => {
     chatUI.templateLI(d);
 });
-
-
 
 
 send.addEventListener("click", (e) => {
@@ -48,9 +73,7 @@ send.addEventListener("click", (e) => {
         .catch(err => {
             console.log(`Desila se neka greska : ${err}`);
         });
-        
     }
-    
 });
 
 
@@ -78,23 +101,66 @@ update.addEventListener("click", (e) => {
             setTimeout(() => {
                 nameUpdate.style.display = "none";
             }, 3000)
+            localStorage.setItem("username", chatroom.username);
         }
         else{
             inputUpdate.value = "";
         }
-    }
-    
+    }    
 });
 
 
 rooms.forEach(room => {
-    room.addEventListener("click", () => {
-        ul.innerHTML = "";
+    room.addEventListener("click", (e) => {
+        rooms.forEach(room1 => {
+            room1.style.backgroundColor = "purple";
+        });
+        e.preventDefault();
+        chatUI.clear();
         let roomName = room.innerHTML.length -1;
         chatroom.updateRoom(room.innerHTML.slice(-roomName));
         chatroom.getChats(d => {
             chatUI.templateLI(d);
         });
+        room.style.backgroundColor = "rgb(253, 188, 67)";
+        sessionStorage.setItem("room", room.innerHTML.slice(-roomName));
     });
 });
 
+ul.addEventListener("click", e => {
+    if(e.target.tagName == "IMG"){
+        e.target.parentElement.remove();
+        let id = e.target.parentElement.id;
+        if(e.target.parentNode.firstChild.innerHTML == localStorage.username){ // Slicno tako i za redjanje poruka!!!!!!!
+            let confirmation = confirm("Da li ste sigurni da zelite da obrisete poruku?");
+            if(confirmation) {
+                chatroom.deleteMsg(id);
+                
+            }
+        }
+        else if(chatroom.username == "admin" || chatroom.username == "Admin"){
+            chatroom.deleteMsg(id);
+        }
+    }
+});
+
+updateColor.addEventListener("click", (e) => {
+    e.preventDefault();
+    let color = colorChange.value;
+    setTimeout(() => {
+        section.style.backgroundColor = color;
+    }, 500)
+    localStorage.setItem("color", color);
+});
+
+dateFilter.addEventListener("click", (e) => {
+    e.preventDefault();
+    let date1T = new Date(date1.value);
+    let date2T = new Date(date2.value);
+    let date1TS = firebase.firestore.Timestamp.fromDate(date1T);
+    let date2TS = firebase.firestore.Timestamp.fromDate(date2T);
+    ul.innerHTML = "";
+    chatroom.dateFilter(d => {
+        chatUI.templateLI(d);
+    }, date1TS, date2TS);
+});

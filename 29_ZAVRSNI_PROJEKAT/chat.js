@@ -3,6 +3,7 @@ class Chatroom {
         this.room = r;
         this.username = u;
         this.chats = db.collection("chats");
+        this.unsub = false;
     }
 
     set room(r) {
@@ -41,7 +42,7 @@ class Chatroom {
     }
 
     getChats(callback) {
-        this.chats
+        this.unsub = this.chats
         .where("room", "==", this.room)
         .orderBy("created_at", "asc")
         .onSnapshot(snapshot => {
@@ -49,8 +50,7 @@ class Chatroom {
                 
                 // Ispisati dokumente koji su dodati u bazu
                 if(change.type == "added"){
-                    // console.log(change.doc.data());
-                    callback(change.doc.data());
+                    callback(change.doc);
                 }
             });
         });
@@ -62,6 +62,38 @@ class Chatroom {
 
     updateRoom(room) {
         this.room = room;
+        if(this.unsub != false){ //Unsub nije vise false nego je postao funkcija
+            this.unsub(); //Unsub je sada fukncija i poziva se sa ()
+        }
+    }
+
+    deleteMsg(id) {
+        this.chats
+        .doc(id)
+        .delete()
+        .then( () => {
+            console.log(`Uspesno obrisana poruka`);
+        })
+        .catch(err => {
+            console.log(`Desila se greska prilikom brisanja : ${err}`);
+        });
+    }
+
+    dateFilter(callback, date1, date2) {
+        this.unsub = this.chats
+        .where("room", "==", this.room)
+        .where("created_at", ">=", date1)
+        .where("created_at", "<=", date2)
+        .orderBy("created_at", "asc")
+        .onSnapshot(snapshot => {
+            snapshot.docChanges().forEach(change => {
+                
+                // Ispisati dokumente koji su dodati u bazu
+                if(change.type == "added"){
+                    callback(change.doc);
+                }
+            });
+        });
     }
 }
 

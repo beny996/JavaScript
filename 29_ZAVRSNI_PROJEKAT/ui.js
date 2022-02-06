@@ -43,7 +43,6 @@ class ChatUI {
             let dateFormat = `${day}. ${month}. ${year} - ${hour}:${minute}`;
             return dateFormat;
         }
-        
     }
 
     clear() {

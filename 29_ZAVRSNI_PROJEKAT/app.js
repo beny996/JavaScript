@@ -30,7 +30,6 @@ let chatroom = new Chatroom(room, username);
 let chatUI = new ChatUI(ul);
 
 
-
 //Highlight default sobe prilikom ucitavanja stranice
 window.onload = () => {
     rooms.forEach(room => {

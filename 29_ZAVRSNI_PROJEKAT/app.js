@@ -17,7 +17,6 @@ let date1 = document.getElementById("date1");
 let date2 = document.getElementById("date2");
 
 
-
 //Objekti klasa
 let username = "anonymous";
 let room = "general";
@@ -144,6 +143,7 @@ ul.addEventListener("click", e => {
     }
 });
 
+
 updateColor.addEventListener("click", (e) => {
     e.preventDefault();
     let color = colorChange.value;
@@ -163,6 +163,8 @@ dateFilter.addEventListener("click", (e) => {
     chatroom.dateFilter(d => {
         chatUI.templateLI(d);
     }, date1TS, date2TS);
+    date1.value = "";
+    date2.value = "";
 });
 
 inputSend.addEventListener("keydown", (e) => {

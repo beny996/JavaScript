@@ -14,8 +14,14 @@ class ChatUI {
     templateLI(doc) {
         let id = doc.id;
         let d = doc.data();
-        let li = `<li id="${id}"><span>${d.username}</span>: ${d.message} <br> ${this.formatDate(d)} <img src ="https://previews.123rf.com/images/tifani1/tifani11801/tifani1180100203/93475788-trash-bin-vector-icon-.jpg"></li>`;
-        this.list.innerHTML += li;    
+        let li;
+        if(d.username == localStorage.username){
+            li = `<li class="right" id="${id}"><span>${d.username}</span>: ${d.message} <br> ${this.formatDate(d)} <img src ="https://previews.123rf.com/images/tifani1/tifani11801/tifani1180100203/93475788-trash-bin-vector-icon-.jpg"></li>`
+        }
+        else{
+            li = `<li class="left" id="${id}"><span>${d.username}</span>: ${d.message} <br> ${this.formatDate(d)} <img src ="https://previews.123rf.com/images/tifani1/tifani11801/tifani1180100203/93475788-trash-bin-vector-icon-.jpg"></li>`
+        }
+        this.list.innerHTML += li;
     }
 
     formatDate(d) {

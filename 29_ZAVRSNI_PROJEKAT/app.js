@@ -17,6 +17,7 @@ let date1 = document.getElementById("date1");
 let date2 = document.getElementById("date2");
 
 
+
 //Objekti klasa
 let username = "anonymous";
 let room = "general";
@@ -52,6 +53,9 @@ window.onload = () => {
     chatroom.getChats(d => {
         chatUI.templateLI(d);
     });
+    setTimeout(() => {
+        section.scrollTop = section.scrollHeight;
+    },300);
 };
 
 
@@ -70,6 +74,9 @@ send.addEventListener("click", (e) => {
             console.log(`Desila se neka greska : ${err}`);
         });
     }
+    setTimeout(() => {
+        section.scrollTop = section.scrollHeight;
+    },100);
 });
 
 
@@ -89,6 +96,7 @@ update.addEventListener("click", (e) => {
         }
     }
     else{
+        ul.innerHTML = "";
         chatroom.updateUsername(text);
         if(username != chatroom.username){
             inputUpdate.value = "";
@@ -98,11 +106,14 @@ update.addEventListener("click", (e) => {
                 nameUpdate.style.display = "none";
             }, 3000)
             localStorage.setItem("username", chatroom.username);
+            chatroom.getChats(d => {
+                chatUI.templateLI(d);
+            });
         }
         else{
             inputUpdate.value = "";
         }
-    }    
+    }
 });
 
 
@@ -156,12 +167,17 @@ dateFilter.addEventListener("click", (e) => {
     let date2T = new Date(date2.value);
     let date1TS = firebase.firestore.Timestamp.fromDate(date1T);
     let date2TS = firebase.firestore.Timestamp.fromDate(date2T);
-    chatUI.clear();
-    chatroom.dateFilter(d => {
-        chatUI.templateLI(d);
-    }, date1TS, date2TS);
-    date1.value = "";
-    date2.value = "";
+    if(date1.value != "" && date2.value != ""){
+        chatUI.clear();
+        chatroom.dateFilter(d => {
+            chatUI.templateLI(d);
+        }, date1TS, date2TS);
+        date1.value = "";
+        date2.value = "";
+    }
+    else{
+        alert("Nisu uneti validni datumi!");
+    }
 });
 
 inputSend.addEventListener("keydown", (e) => {

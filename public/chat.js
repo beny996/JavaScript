@@ -17,7 +17,7 @@ class Chatroom {
     set username(u) {
         let uTrim = u.trim();
         if(uTrim.length < 2 || uTrim.length > 10){
-            alert("Nevalidno korisnicko ime!");
+            alert("Korisnicko ime mora da sadrzi između 2 i 10 karaktera!");
         }
         else{
             this._username = uTrim;

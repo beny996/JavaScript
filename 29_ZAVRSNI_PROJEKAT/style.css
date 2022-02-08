@@ -93,7 +93,7 @@ section {
 
 .right {
   color: black;
-  background-color: rgb(253, 188, 67);
+  background-color: rgb(248, 220, 167);
   border: 1px solid white;
   width: 50%;
   margin: 5px;
@@ -122,7 +122,9 @@ li img {
   border: 1px solid white;
   border-radius: 8px;
 }
-
+span {
+  color: purple;
+}
 ul {
   list-style-type: none;
 }
@@ -144,6 +146,12 @@ textarea {
   width: 20%;
   position: relative;
   top: 8px;
+}
+#dateFilter,
+#updateColor,
+#send,
+#update {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {

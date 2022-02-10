@@ -8,7 +8,7 @@ import ChildCounter from './components/ChildCounter';
 function App() {
   return (
     <div>
-      Iza viticastih zagrada 2+2 = {2+2}
+      {/* Iza viticastih zagrada 2+2 = {2+2} */}
       {/* <Counter /> */}
       <Counters />
     </div>

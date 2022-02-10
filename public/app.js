@@ -96,9 +96,9 @@ update.addEventListener("click", (e) => {
         }
     }
     else{
-        ul.innerHTML = "";
         chatroom.updateUsername(text);
         if(username != chatroom.username){
+            ul.innerHTML = "";
             inputUpdate.value = "";
             nameUpdate.innerHTML = `Promenjeno korisnicko ime (${text})`;
             nameUpdate.style.display = "block";
@@ -136,17 +136,21 @@ rooms.forEach(room => {
 
 ul.addEventListener("click", e => {
     if(e.target.tagName == "IMG"){
-        e.target.parentElement.remove();
         let id = e.target.parentElement.id;
         if(e.target.parentNode.firstChild.innerHTML == localStorage.username){
             let confirmation = confirm("Da li ste sigurni da zelite da obrisete poruku?");
             if(confirmation) {
+                e.target.parentElement.remove();
                 chatroom.deleteMsg(id);
                 
             }
         }
         else if(chatroom.username == "admin" || chatroom.username == "Admin"){
+            e.target.parentElement.remove();
             chatroom.deleteMsg(id);
+        }
+        else{
+            e.target.parentElement.remove();
         }
     }
 });

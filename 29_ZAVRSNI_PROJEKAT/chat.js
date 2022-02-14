@@ -58,6 +58,9 @@ class Chatroom {
 
     updateUsername(username) {
         this.username = username;
+        if(this.unsub != false){ //Unsub nije vise false nego je postao funkcija
+            this.unsub(); //Unsub je sada fukncija i poziva se sa ()
+        }
     }
 
     updateRoom(room) {

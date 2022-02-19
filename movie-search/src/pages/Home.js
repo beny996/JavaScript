@@ -40,13 +40,9 @@ const Home = () => {
     <div>
       <Search handleMovieSearch={handleMovieSearch} />
       {loading && !errorMessage ? (
-        <div>
-          <Loading />
-        </div>
+        <Loading />
       ) : errorMessage ? (
-        <div>
-          <ErrorMessage>{errorMessage}</ErrorMessage>
-        </div>
+        <ErrorMessage>{errorMessage}</ErrorMessage>
       ) : (
         <MovieList movies={movies} />
       )}

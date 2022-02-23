@@ -1,49 +1,23 @@
 import "./App.css";
-import DeleteUsers from "./components/DeleteUsers";
-import GetUsers from "./components/GetUsers";
-import PostUsers from "./components/PostUsers";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { Home, About, Users, UserDetails } from "./views";
-import UserContextProvider from "./context/UserContext";
-
+import { useState } from "react";
+import PrivateRoute from "./components/PrivateRoute";
+import Account from "./pages/Profile";
+import Profile from "./pages/Profile";
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
   return (
     <div className="App">
-      <UserContextProvider>
-        {/* <GetUsers />
-      <PostUsers /> */}
-
-        <Router>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/users">Users</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <Switch>
-            <Route exact path="/about">
-              <About />
-            </Route>
-            <Route exact path="/users/:id">
-              <UserDetails />
-            </Route>
-            <Route exact path="/users">
-              <Users />
-            </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </Router>
-      </UserContextProvider>
+      <Router>
+        <Route path="/" exact>
+          <button onClick={() => setIsAuth(true)}>Login</button>
+          <button onCanPlay={() => setIsAuth(false)}>Logout</button>
+          <Link to="/profile">Profile</Link>
+          <Link to="/account">Account</Link>
+        </Route>
+        <PrivateRoute path="/profile" component={Profile} isAuth={isAuth} />
+        <PrivateRoute path="/account" component={Account} isAuth={isAuth} />
+      </Router>
     </div>
   );
 }
